@@ -2,7 +2,7 @@ export const TEMPLATES = [
   {
     id: "counter",
     name: "Counter",
-    blurb: "Smallest deploy. Click, increment, prove the chain is live.",
+    blurb: "what happens when you press bump, the number moves, you know the chain heard you.",
     contractName: "Counter",
     constructorArgs: [],
     source: `// SPDX-License-Identifier: MIT
@@ -28,7 +28,7 @@ contract Counter {
   {
     id: "token",
     name: "Test token",
-    blurb: "Mint a named ERC-20 to the deployer. Good first public app.",
+    blurb: "a token with your name on it, minted to the wallet that launches.",
     contractName: "StudioToken",
     constructorArgs: [],
     source: `// SPDX-License-Identifier: MIT
@@ -81,7 +81,7 @@ contract StudioToken {
   {
     id: "vault",
     name: "Open vault",
-    blurb: "Deposit ZTH, withdraw later. First lending-shaped surface.",
+    blurb: "send zth in, take it back later, the first vault shaped thing.",
     contractName: "OpenVault",
     constructorArgs: [],
     source: `// SPDX-License-Identifier: MIT
