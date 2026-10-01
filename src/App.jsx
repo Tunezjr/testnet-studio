@@ -104,7 +104,6 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="mesh" />
       <div className="wrap">
         <header className="top">
           <div className="wordmark">
@@ -129,13 +128,20 @@ export default function App() {
           </button>
         </header>
 
-        <section className="hero">
-          <h1>say what the app is, then put it on zenith.</h1>
-          <p>
-            what happens when someone opens this page, they pick a start, talk to the file,
-            compile in the browser, and launch from their own wallet. no new language, no
-            bridge story.
-          </p>
+        <section className="hero-stage">
+          <div className="silk" aria-hidden="true">
+            <div className="silk-wash" />
+            <div className="silk-radials" />
+            <div className="silk-fade" />
+          </div>
+          <div className="hero">
+            <h1>say what the app is, then put it on zenith.</h1>
+            <p>
+              what happens when someone opens this page, they pick a start, talk to the file,
+              compile in the browser, and launch from their own wallet. no new language, no
+              bridge story.
+            </p>
+          </div>
         </section>
 
         <div className="grid">
