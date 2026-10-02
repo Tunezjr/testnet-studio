@@ -10,12 +10,6 @@ export default function App() {
   const [account, setAccount] = useState("");
   const [balance, setBalance] = useState("");
   const [prompt, setPrompt] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      role: "studio",
-      text: "what happens when you say the token name out loud, I put it in the file. when you are ready, launch puts the contract on zenith testnet from the wallet you just connected.",
-    },
-  ]);
   const [log, setLog] = useState("waiting on you.");
   const [busy, setBusy] = useState(false);
   const [deployed, setDeployed] = useState("");
@@ -162,12 +156,7 @@ export default function App() {
             <div className="silk-fade" />
           </div>
           <div className="hero">
-            <h1>say what the app is, then put it on zenith.</h1>
-            <p>
-              what happens when someone opens this page, they pick a start, talk to the file,
-              compile in the browser, and launch from their own wallet. no new language, no
-              bridge story.
-            </p>
+            <h1>studio</h1>
           </div>
         </section>
 
@@ -181,19 +170,12 @@ export default function App() {
                 onClick={() => pick(t)}
               >
                 <b>{t.name}</b>
-                <p>{t.blurb}</p>
               </div>
             ))}
           </aside>
 
-          <section className="card">
-            <div className="hd">{tpl.contractName}.sol</div>
-            <textarea
-              className="editor"
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
-              spellCheck={false}
-            />
+          <section className="card status">
+            <div className="hd">{tpl.name}</div>
             <pre className="log">
               {log}
               {deployed ? (
@@ -206,33 +188,6 @@ export default function App() {
               ) : null}
             </pre>
           </section>
-
-          <aside className="card">
-            <div className="hd">what to change</div>
-            <div className="chat">
-              {messages.map((m, i) => (
-                <div key={i} className={`bubble ${m.role === "me" ? "me" : ""}`}>
-                  {m.text}
-                </div>
-              ))}
-            </div>
-            <form
-              className="composer"
-              onSubmit={(e) => {
-                e.preventDefault();
-                vibe();
-              }}
-            >
-              <input
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="name it lagos credit"
-              />
-              <button className="btn cream" type="submit">
-                apply
-              </button>
-            </form>
-          </aside>
         </div>
       </div>
     </div>
