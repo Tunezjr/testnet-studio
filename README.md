@@ -1,6 +1,6 @@
 # Testnet Studio
 
-Live on GitHub Pages: https://tunezjr.github.io/testnet-studio/
+Deploys from `main` through Vercel. GitHub Pages is not used.
 
 A small studio for Zenith EVM Testnet (Canton).
 
@@ -12,9 +12,6 @@ People pick a Solidity start, talk to the file, compile in the browser, connect 
 npm install
 npm run dev
 ```
-
-GitHub Pages builds from `main` via `.github/workflows/pages.yml`.
-If the first Actions run fails on Pages permissions, open the repo Settings → Pages and set Source to GitHub Actions, then rerun the workflow.
 
 ## Network
 
