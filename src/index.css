@@ -7,9 +7,6 @@
   --gold-deep: #8a6a32;
   --line: rgba(240, 215, 140, 0.18);
   --mute: rgba(246, 241, 230, 0.62);
-  --cream: var(--bg);
-  --navy: var(--ink);
-  --indigo: var(--gold);
 }
 
 * { box-sizing: border-box; }
@@ -22,10 +19,7 @@ body {
 
 button, textarea, input { font: inherit; color: inherit; }
 
-.app {
-  min-height: 100%;
-  position: relative;
-}
+.app { min-height: 100%; position: relative; }
 
 .wrap {
   position: relative;
@@ -77,18 +71,15 @@ button, textarea, input { font: inherit; color: inherit; }
   padding: 10px 16px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(198, 161, 91, 0.18);
 }
 .btn.cream {
   background: transparent;
   color: var(--gold-bright);
-  box-shadow: none;
   border: 1px solid var(--gold);
 }
 .btn.ghost {
   background: transparent;
   color: var(--ink);
-  box-shadow: none;
   border: 1px solid var(--line);
   text-decoration: none;
 }
@@ -97,7 +88,7 @@ button, textarea, input { font: inherit; color: inherit; }
 .hero-stage {
   position: relative;
   overflow: hidden;
-  min-height: 280px;
+  min-height: 72vh;
   margin: 0 0 22px;
   border-radius: 28px;
   background: #050505;
@@ -107,61 +98,54 @@ button, textarea, input { font: inherit; color: inherit; }
 .silk {
   pointer-events: none;
   position: absolute;
-  inset: -8% -6% -8% 38%;
+  inset: -12% -8% -12% 34%;
+  overflow: hidden;
 }
 
-.silk-wash {
-  position: absolute;
-  inset: -28%;
-  background: linear-gradient(
-    118deg,
-    #1a140c 0%,
-    #8a6a32 22%,
-    #c6a15b 46%,
-    #f0d78c 62%,
-    #8a6a32 82%,
-    #14110c 100%
-  );
-  filter: blur(42px);
-  opacity: 0.9;
-  animation: mesh-drift 8s ease-in-out infinite alternate;
+.silk-pan {
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  animation: silk-pan 9s ease-in-out infinite alternate;
   will-change: transform;
+  filter: saturate(0.7) contrast(1.05);
 }
 
-.silk-radials {
+.silk-gold {
   position: absolute;
-  inset: 0;
+  inset: -10%;
   background:
-    radial-gradient(ellipse 70% 55% at 78% 30%, rgba(240, 215, 140, 0.55), transparent 58%),
-    radial-gradient(ellipse 50% 45% at 96% 78%, rgba(198, 161, 91, 0.4), transparent 55%),
-    radial-gradient(ellipse 40% 40% at 55% 10%, rgba(138, 106, 50, 0.35), transparent 60%);
+    linear-gradient(118deg, rgba(138, 106, 50, 0.35), rgba(240, 215, 140, 0.28) 55%, rgba(17, 12, 6, 0.2)),
+    radial-gradient(ellipse at 70% 40%, rgba(240, 215, 140, 0.35), transparent 55%);
+  mix-blend-mode: soft-light;
+  animation: mesh-drift 8s ease-in-out infinite alternate;
 }
 
 .silk-fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    #050505 0%,
-    rgba(5, 5, 5, 0.82) 22%,
-    transparent 50%
-  );
+  background: linear-gradient(90deg, #050505 0%, rgba(5, 5, 5, 0.82) 16%, transparent 42%);
+}
+
+@keyframes silk-pan {
+  0% { transform: scale(1.08) translate3d(0, 0, 0); }
+  100% { transform: scale(1.22) translate3d(-8%, -4%, 0); }
 }
 
 @keyframes mesh-drift {
-  0% { transform: translate3d(-4%, -2%, 0) scale(1.05); }
-  100% { transform: translate3d(4%, 3%, 0) scale(1.12); }
+  0% { transform: translate3d(-6%, -3%, 0) scale(1.05); }
+  100% { transform: translate3d(6%, 4%, 0) scale(1.14); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .silk-wash { animation: none; }
+  .silk-pan, .silk-gold { animation: none; }
 }
 
 .hero {
   position: relative;
   z-index: 1;
   max-width: 640px;
-  padding: 48px 28px;
+  padding: 64px 28px;
 }
 .hero h1 {
   font-family: Fraunces, Georgia, serif;
@@ -183,15 +167,12 @@ button, textarea, input { font: inherit; color: inherit; }
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr) 300px;
   gap: 16px;
-  align-items: stretch;
 }
 
 .card {
   background: var(--bg-raise);
   border: 1px solid var(--line);
   border-radius: 24px;
-  box-shadow: none;
-  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -207,17 +188,15 @@ button, textarea, input { font: inherit; color: inherit; }
 
 .tpl {
   margin: 0 12px 10px;
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 16px;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform 0.2s ease, background 0.2s ease;
 }
-.tpl:hover { transform: translateY(-1px); background: #191919; }
+.tpl:hover { background: #191919; }
 .tpl.on {
   background: #191919;
   border-color: rgba(198, 161, 91, 0.45);
-  box-shadow: inset 0 0 0 1px rgba(198, 161, 91, 0.2);
 }
 .tpl b { display: block; font-size: 15px; letter-spacing: -0.02em; }
 .tpl p { margin: 6px 0 0; color: var(--mute); font-size: 13px; line-height: 1.35; }
@@ -259,11 +238,7 @@ button, textarea, input { font: inherit; color: inherit; }
   align-self: flex-end;
 }
 
-.composer {
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-}
+.composer { display: flex; gap: 8px; padding: 12px; }
 .composer input {
   flex: 1;
   background: #0c0c0c;
@@ -287,8 +262,8 @@ button, textarea, input { font: inherit; color: inherit; }
 @media (max-width: 960px) {
   .grid { grid-template-columns: 1fr; }
   .top { flex-wrap: wrap; }
-  .silk { inset: 42% -12% -8% -12%; }
+  .silk { inset: 38% -18% -12% -18%; }
   .silk-fade {
-    background: linear-gradient(180deg, #050505 0%, rgba(5, 5, 5, 0.6) 28%, transparent 62%);
+    background: linear-gradient(180deg, #050505 0%, rgba(5, 5, 5, 0.55) 24%, transparent 58%);
   }
 }

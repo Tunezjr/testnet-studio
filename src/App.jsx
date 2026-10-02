@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BrowserProvider, ContractFactory, formatEther } from "ethers";
 import { TEMPLATES, applyVibe } from "./lib/templates";
 import { ZENITH, addressUrl, ensureZenith, txUrl } from "./lib/zenith";
@@ -19,11 +19,28 @@ export default function App() {
   const [log, setLog] = useState("waiting on you.");
   const [busy, setBusy] = useState(false);
   const [deployed, setDeployed] = useState("");
+  const videoRef = useRef(null);
 
   const short = useMemo(
-    () => (account ? `${account.slice(0, 6)}…${account.slice(-4)}` : ""),
+    () => (account ? `${account.slice(0, 6)}\u2026${account.slice(-4)}` : ""),
     [account]
   );
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = true;
+    const play = () => {
+      void el.play().catch(() => {});
+    };
+    play();
+    el.addEventListener("canplay", play);
+    window.addEventListener("touchstart", play, { once: true });
+    return () => {
+      el.removeEventListener("canplay", play);
+      window.removeEventListener("touchstart", play);
+    };
+  }, []);
 
   function pick(next) {
     setTpl(next);
@@ -110,11 +127,11 @@ export default function App() {
             <span className="dot" />
             studio
           </div>
-          <span className="chip">zenith testnet · {ZENITH.chainId}</span>
+          <span className="chip">zenith testnet \u00b7 {ZENITH.chainId}</span>
           <div className="grow" />
           {account ? (
             <span className="chip">
-              {short} · {Number(balance).toFixed(4)} zth
+              {short} \u00b7 {Number(balance).toFixed(4)} zth
             </span>
           ) : null}
           <a className="btn ghost" href={ZENITH.faucet} target="_blank" rel="noreferrer">
@@ -130,8 +147,18 @@ export default function App() {
 
         <section className="hero-stage">
           <div className="silk" aria-hidden="true">
-            <div className="silk-wash" />
-            <div className="silk-radials" />
+            <video
+              ref={videoRef}
+              className="silk-pan"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              <source src="/videos/silk.mp4" type="video/mp4" />
+            </video>
+            <div className="silk-gold" />
             <div className="silk-fade" />
           </div>
           <div className="hero">
