@@ -22,7 +22,7 @@ export default function App() {
   const videoRef = useRef(null);
 
   const short = useMemo(
-    () => (account ? `${account.slice(0, 6)}\u2026${account.slice(-4)}` : ""),
+    () => (account ? `${account.slice(0, 6)}…${account.slice(-4)}` : ""),
     [account]
   );
 
@@ -127,11 +127,11 @@ export default function App() {
             <span className="dot" />
             studio
           </div>
-          <span className="chip">zenith testnet \u00b7 {ZENITH.chainId}</span>
+          <span className="chip">zenith testnet · {ZENITH.chainId}</span>
           <div className="grow" />
           {account ? (
             <span className="chip">
-              {short} \u00b7 {Number(balance).toFixed(4)} zth
+              {short} · {Number(balance).toFixed(4)} zth
             </span>
           ) : null}
           <a className="btn ghost" href={ZENITH.faucet} target="_blank" rel="noreferrer">
